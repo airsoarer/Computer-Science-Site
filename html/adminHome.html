@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Title -->
+    <title>Riley CS Projects</title>
+
+    <!-- Styles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/adminHome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="../js/home.js"></script>
+</head>
+<body>
+    <div class="row wrapper">
+        <div class="row top">
+            <div class="row title">
+                <a href="#" title="Home Page" id="home"><h5 class="col s10 m2 center-align">Riley CS Projects</h5></a>
+                <a href="#" title="Admin Page" class="col hide-on-small-only m2 offset-m8 center-align underline logout">Logout</a>
+                <a href="" class="col s2 hide-on-med-and-up center-align"><i class="material-icons">menu</i></a>
+            </div>
+            <div class="row info">
+                <h3 class="col s12 m12 center-align">About</h3>
+                <p class="col s12 m10 offset-m1 center-align">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus repellat, nostrum praesentium aperiam quo at nulla hic molestias tempora esse, dignissimos maiores deleniti eius, ipsum accusamus. Odio voluptates nobis dolorem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque fugiat rem dolores architecto voluptates aliquam nemo? Omnis officiis doloremque cum voluptates consequatur ipsum non, cumque animi architecto obcaecati nam.</p>
+            </div>
+            <div class="row col m12 hide-on-small-only buttons">
+                <h5 class="col s12 m12 center-align">Student Projects</h5>
+                <div class="col s12 m2 offset-m2 center-align"><button class="col s12 m10 offset-m1" id="cs1">CS1</button></div>
+                <div class="col s12 m2 center-align"><button class="col s12 m10 offset-m1" id="cs2">CS2</button></div>
+                <div class="col s12 m2 center-align"><button class="col s12 m10 offset-m1" id="cs3">CS3</button></div>
+                <div class="col s12 m2 center-align"><button class="col s12 m10 offset-m1 truncate" id="addProject">Add A Project</button></div>
+            </div>
+            <div class="row col 12 m12 arrow">
+                <button class="col s12 m12 center-align scroll"><i class="material-icons large">keyboard_arrow_down</i></button>
+            </div>
+        </div>
+        <div class="row temp">
+            <!-- Homepage -->
+            <div class="row homeDiv">
+                <div class="row featured">
+                    <button class="col s12 m12 center-align" id="changeFeatured"><h4 class="col s12 m4 offset-m4 center-align underline">Change Featured Projects</h4></button>
+                </div>
+                <div class="row aboutTeacher">
+                    <div class="col s12 m4 image">
+                        <img src="https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png">
+                    </div>
+                    <div class="col s12 m8 teacherInfo">
+                        <h4 class="col s12 m12">Teacher</h4>
+                        <p class="col s12 m12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, numquam quae saepe repellat eaque at quia omnis corrupti. Esse fugiat, dignissimos eveniet nihil veritatis quidem reiciendis reprehenderit autem numquam non. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique tenetur soluta minima quos minus nesciunt, libero, pariatur explicabo aliquid temporibus ad quae neque doloribus nam itaque voluptatem distinctio impedit assumenda!</p>
+                        <br>
+                        <p class="col s12 m12">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore veniam tenetur nesciunt doloremque accusamus exercitationem, laborum voluptas qui ut, maxime suscipit ex pariatur fuga vel saepe illo tempora, asperiores temporibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure commodi magnam aliquid laboriosam minima rem vel adipisci nostrum tenetur dolores quia, reiciendis dolorum sit, distinctio odio perferendis accusamus praesentium accusantium.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- CS1 Page -->
+            <div class="row cs1Div">
+    
+            </div>
+            <!-- CS2 Page -->
+            <div class="row cs2Div">
+    
+            </div>
+            <!-- CS3 Page -->
+            <div class="row cs3Div">
+    
+            </div>
+            <!-- Add a Project -->
+            <div class="row addProjectDiv">
+                <h4 class="col s12 m4 offset-m1">Add A Project</h4>
+                <div class="col s12 m10 offset-m1 inputField">
+                    <div class="col s12 m6 title">
+                        <h5>Project Title</h5>
+                        <input type="text" placeholder="Project Title" id="title">
+                    </div>
+                    <div class="col s12 m6 description">
+                        <h5>Description</h5>
+                        <input type="text" placeholder="Description" id="description">
+                    </div>
+                    <div class="col s12 m6 creators">
+                        <h5>Creators</h5>
+                        <input type="text" class="col m11 creator0" placeholder="Student Name and Grade:">
+                        <button class="col m1" id="addCreator"><i class="material-icons">add</i></button>
+                    </div>
+                    <div class="col s12 m6 radio">
+                        <div class="col s12 m6 class">
+                            <h5>Class</h5>
+                            <p><label><input class="class" type="radio" value="CS1" name="class"><span>CS1</span></label></p>
+                            <p><label><input class="class" type="radio" value="CS2" name="class"><span>CS2</span></label></p>
+                            <p><label><input class="class" type="radio" value="CS3" name="class"><span>CS3</span></label></p>
+                        </div>
+                        <div class="col s12 m6 projectType">
+                            <h5>Project Type</h5>
+                            <p><label><input type="radio" value="Scratch"  name="projectType"><span>Scratch</span></label></p>
+                            <p><label><input type="radio" value="App Inventor" name="projectType"><span>App Inventor</span></label></p>
+                            <p><label><input type="radio" value="Python" name="projectType"><span>Python</span></label></p>
+                            <p><label><input type="radio" value="Web Development" name="projectType"><span>Web Development</span></label></p>
+                            <p><label><input type="radio" value="Android Studio" name="projectType"><span>Android Studio</span></label></p>
+                            <p><label><input type="radio" value="Private Study Project" name="projectType"><span>Private Study Project</span></label></p>
+                        </div>
+                    </div>
+                    <div class="col s12 m12 upload">
+                        <h5>Upload Screenshots / Images</h5>
+                        <input type="file" multiple="multiple" id="files">
+                    </div>
+                    <button class="col s12 m4" id="project">Add</button>
+                </div>
+            </div>
+            <!-- Loader -->
+            <h3 class="col s12 m12 lds-hourglass" id="loader"></h3>
+        </div>
+    </div>
+</body>
+</html>
