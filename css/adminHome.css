@@ -1,0 +1,60 @@
+*{
+    font-weight: 200;
+    letter-spacing: 2px !important;
+    box-sizing: border-box;
+
+    --baseColor: #FFCC33;
+    --baseColorTwo: #003399;
+    --accentColor: #464b4f;
+}
+
+button:focus{
+    background-color: transparent !important;
+}
+
+.featured button{
+    background-color: transparent;
+    border: none;
+}
+
+.featured button:hover{
+    cursor: pointer;
+}
+
+.creators button{
+    background-color: transparent;
+    border: none;
+}
+
+.creators button:hover{
+    cursor: pointer;
+}
+
+.title{
+    margin-bottom: 0px !important;
+}
+
+.creators{
+    max-height: 300px !important;
+}
+
+.upload{
+    margin-bottom: 50px;
+}
+
+#project{
+    background-color: transparent;
+    border: solid 2px var(--baseColorTwo);
+    height: 50px;
+    font-weight: 300;
+}
+
+#project:hover{
+    background-color: var(--baseColorTwo);
+    color: white;
+    transition-duration: .5s;
+}
+
+.addProjectDiv{
+    display: none;
+}
