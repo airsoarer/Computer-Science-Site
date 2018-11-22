@@ -29,6 +29,35 @@ input:focus{
     .title h5{
         text-align: left;
     }
+
+    .top{
+        height: auto !important;
+    }
+
+    .info{
+        padding-bottom: 80px !important;
+    }
+}
+
+.sidenav{
+    background-color: var(--accentColor) !important;
+}
+
+.sidenav button{
+    background-color: transparent;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 200;
+}
+
+.sidenav button:focus{
+    background-color: transparent;
+}
+
+.sidenav button:hover{
+    cursor: pointer;
 }
 
 .title a{
@@ -56,6 +85,10 @@ input:focus{
 
 .info p{
     font-size: 18px;
+}
+
+.project img{
+    width: 100% !important;
 }
 
 .arrow button{
@@ -117,6 +150,26 @@ input:focus{
     position: relative;
 }
 
+.project{
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+.photoDiv{
+    height: 100% !important;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    /* width: 100% !important; */
+}
+
+.photoDiv img{
+    height: 100% !important;
+    width: auto !important;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 .buttons{
     position: absolute;
     bottom: 120px;
@@ -149,6 +202,10 @@ input:focus{
 
 .adminDiv{
     display: none;
+}
+
+.aboutTeacher p{
+    font-size: 24px;
 }
 
 .adminDiv button{
