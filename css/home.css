@@ -142,6 +142,10 @@ input:focus{
     height: 100% !important;
 }
 
+.aboutTeacher{
+    margin-top: 80px;
+}
+
 .top{
     height: 100vh;
     background-color: var(--accentColor);
@@ -151,8 +155,8 @@ input:focus{
 }
 
 .project{
-    height: 400px;
-    margin-bottom: 20px;
+    height: 400px !important;
+    margin-bottom: 50px !important;
 }
 
 .photoDiv{

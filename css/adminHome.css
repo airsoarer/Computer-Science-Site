@@ -13,6 +13,15 @@ iframe{
     height: 100% !important;
 }
 
+.feature{
+    background-color: transparent;
+    border: none;
+}
+
+.feature:hover{
+    cursor: pointer;
+}
+
 button:focus{
     background-color: transparent !important;
 }
