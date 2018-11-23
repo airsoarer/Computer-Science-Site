@@ -10,6 +10,7 @@
     };
      
     creators = 0;
+    scratch = false;
 
     function init(){
         firebase.initializeApp(config);
@@ -18,7 +19,6 @@
         ref.on("child_added", snapshot => {
             // Convert Data
             let data = snapshot.val();
-            console.log(data);
             
             // Create html element
             let div = document.createElement("div");
@@ -34,13 +34,19 @@
             photoDiv.classList.add("photoDiv");
             div.appendChild(photoDiv);
 
-            // Get Screenshots
-            for(var i = 0; i < data.FilePaths.length; i++){
-                firebase.storage().ref(data.FilePaths[i]).getDownloadURL().then(url => {
-                    let img = document.createElement("img");
-                    img.src = url;
-                    photoDiv.appendChild(img);
-                });
+            if(data.FilePaths != undefined){
+                // Get Screenshots
+                for(var i = 0; i < data.FilePaths.length; i++){
+                    firebase.storage().ref(data.FilePaths[i]).getDownloadURL().then(url => {
+                        let img = document.createElement("img");
+                        img.src = url;
+                        photoDiv.appendChild(img);
+                    });
+                }
+            }else if(data.ProjectType === "Scratch"){
+                $(photoDiv).html(data.ScratchEmbed);
+            }else{
+
             }
 
             // Make div for info
@@ -123,6 +129,9 @@
         // Add a New Project button event listeners
         $("#project").on("click", addProject);
 
+        // Radio button event listener
+        $("input[name=projectType]").on('click', radio);
+
         // Add a creator input button event listener
         $("#addCreator").on("click", addCreator);
 
@@ -130,13 +139,24 @@
         $(".sidenav").sidenav();
     }
 
+    function radio(){
+        let clicked = $(this).val();
+        
+        if(clicked === "Scratch"){
+            $('.scratch').fadeIn(200);
+            scratch = true;
+        }
+    }
+
     function addCreator(){
         creators++;
+        // console.log(creators);
 
         let input = document.createElement("input");
         input.classList.add("col");
         input.classList.add("m12");
-        input.classList.add("creator" + creators);
+        input.id = "creator" + String(creators);
+        input.type = "text";
         $(input).attr("placeholder", "Student Name and Grade:");
         
         $(".creators").append(input);
@@ -148,11 +168,14 @@
         let title = $("#title").val();
         let description = $("#description").val();
         let creatorArray = [];
+        let embed = $("#url").val();
 
         // For loop to add all creators to creatorArray
         for(var i = 0; i < creators + 1; i++){
-            creatorArray.push($(".creator" + i).val());
+            creatorArray.push($("#creator" + i).val());
         }
+
+        console.log(creatorArray);
 
         let classType = $("input[name=class]:checked").val();
         let projectType = $("input[name=projectType]:checked").val();
@@ -164,22 +187,37 @@
         let files = $("#files")[0].files;
         let filePaths = [];
 
-        // Loop through files
-        for(var i = 0; i < files.length; i++){
-            firebase.storage().ref("Projects/" + key + "/Screenshots/" + files[i].name).put(files[i], {contentType:files[i].type})   ;
-            filePaths.push("Projects/" + key + "/Screenshots/" + files[i].name);
+        if(files){
+            // Loop through files
+            for(var i = 0; i < files.length; i++){
+                firebase.storage().ref("Projects/" + key + "/Screenshots/" + files[i].name).put(files[i], {contentType:files[i].type})   ;
+                filePaths.push("Projects/" + key + "/Screenshots/" + files[i].name);
+            }
         }
 
         // Send other data
-        firebase.database().ref("Projects/" + key).set({
-            Title:title,
-            Featured:false,
-            Description:description,
-            Creators:creatorArray,
-            Class:classType,
-            ProjectType:projectType,
-            FilePaths:filePaths,
-        });
+        // if(scratch === true){
+        //     firebase.database().ref("Projects/" + key).set({
+        //         Title:title,
+        //         Featured:false,
+        //         Description:description,
+        //         Creators:creatorArray,
+        //         Class:classType,
+        //         ProjectType:projectType,
+        //         FilePaths:filePaths,
+        //         ScratchEmbed:embed,
+        //     });
+        // }else{
+        //     firebase.database().ref("Projects/" + key).set({
+        //         Title:title,
+        //         Featured:false,
+        //         Description:description,
+        //         Creators:creatorArray,
+        //         Class:classType,
+        //         ProjectType:projectType,
+        //         FilePaths:filePaths,
+        //     });
+        // }
 
         setTimeout(() => {
             $(".homeDiv").css("display", "block");
