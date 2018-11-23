@@ -19,11 +19,16 @@
         ref.on("child_added", snapshot => {
             // Convert Data
             let data = snapshot.val();
+            let key = snapshot.key;
             
             // Create html element
             let div = document.createElement("div");
             div.classList.add("row")
             div.classList.add("project");
+
+            let divTwo = document.createElement("div");
+            divTwo.classList.add("row");
+            divTwo.classList.add("project");
 
             // Create div for screenshots
             let photoDiv = document.createElement("div");
@@ -33,6 +38,16 @@
             photoDiv.classList.add("offset-m1");
             photoDiv.classList.add("photoDiv");
             div.appendChild(photoDiv);
+            // divTwo.appendChild(photoDiv);
+
+            let photoDivTwo = document.createElement("div");
+            photoDivTwo.classList.add("col");
+            photoDivTwo.classList.add("s12");
+            photoDivTwo.classList.add("m4");
+            photoDivTwo.classList.add("offset-m1");
+            photoDivTwo.classList.add("photoDiv");
+            // div.appendChild(photoDiv);
+            divTwo.appendChild(photoDivTwo);
 
             if(data.FilePaths != undefined){
                 // Get Screenshots
@@ -41,10 +56,15 @@
                         let img = document.createElement("img");
                         img.src = url;
                         photoDiv.appendChild(img);
+
+                        let imgTwo = document.createElement("img");
+                        imgTwo.src = url;
+                        photoDivTwo.appendChild(imgTwo);
                     });
                 }
             }else if(data.ProjectType === "Scratch"){
                 $(photoDiv).html(data.ScratchEmbed);
+                $(photoDivTwo).html(data.ScratchEmbed);
             }else{
 
             }
@@ -54,7 +74,16 @@
             infoDiv.classList.add("col");
             infoDiv.classList.add("s12");
             infoDiv.classList.add("m6");
+            infoDiv.classList.add("infoDiv");
             div.appendChild(infoDiv);
+            // divTwo.appendChild(infoDiv);
+
+            let infoDivTwo = document.createElement("div");
+            infoDivTwo.classList.add("col");
+            infoDivTwo.classList.add("s12");
+            infoDivTwo.classList.add("m6");
+            infoDivTwo.classList.add("infoDiv");
+            divTwo.appendChild(infoDivTwo);
 
             // Title
             let title = document.createElement("h4");
@@ -65,12 +94,20 @@
             title.classList.add("title");
             infoDiv.appendChild(title);
 
+            let titleTwo = document.createElement("h4");
+            titleTwo.textContent = data.Title;
+            titleTwo.classList.add("col");
+            titleTwo.classList.add("s12")
+            titleTwo.classList.add("m12");
+            titleTwo.classList.add("title");
+            infoDivTwo.appendChild(titleTwo);
+
             // Creators
             let tempText = "Creators: ";
             let creators = document.createElement("h5");
 
             for(var i in data.Creators){
-                tempText += data.Creators[i] + ", ";
+                tempText += data.Creators[i] + " | ";
             }
 
             creators.textContent = tempText
@@ -79,6 +116,15 @@
             creators.classList.add("m12");
             creators.classList.add("creators");
             infoDiv.appendChild(creators);
+
+            let creatorsTwo = document.createElement("h5");
+            creatorsTwo.textContent = tempText
+            creatorsTwo.classList.add("col");
+            creatorsTwo.classList.add("s12");
+            creatorsTwo.classList.add("m12");
+            creatorsTwo.classList.add("creators");
+            infoDivTwo.appendChild(creatorsTwo);
+
 
             // Class
             let classTxt = document.createElement("h5");
@@ -89,6 +135,14 @@
             classTxt.classList.add("class");
             infoDiv.appendChild(classTxt);
 
+            let classTxtTwo = document.createElement("h5");
+            classTxtTwo.textContent = "Class: " + data.Class;
+            classTxtTwo.classList.add("col");
+            classTxtTwo.classList.add("s12");
+            classTxtTwo.classList.add("m12");
+            classTxtTwo.classList.add("class");
+            infoDivTwo.appendChild(classTxtTwo);
+
             // Description
             let description = document.createElement("p");
             description.textContent = data.Description;
@@ -98,16 +152,67 @@
             description.classList.add("description");
             infoDiv.appendChild(description);
 
+            let descriptionTwo = document.createElement("p");
+            descriptionTwo.textContent = data.Description;
+            descriptionTwo.classList.add("col");
+            descriptionTwo.classList.add("s12");
+            descriptionTwo.classList.add("m12");
+            descriptionTwo.classList.add("description");
+            infoDivTwo.appendChild(descriptionTwo);
+
+            if(firebase.auth().currentUser != null){
+                // Featured 
+                let featured = document.createElement("button");
+                featured.classList.add("col");
+                featured.classList.add("m1");
+                featured.classList.add("offset-m11");
+                featured.classList.add("feature");
+                featured.id = key;
+                infoDiv.appendChild(featured);
+
+                let featuredTwo = document.createElement("button");
+                featuredTwo.classList.add("col");
+                featuredTwo.classList.add("m1");
+                featuredTwo.classList.add("offset-m11");
+                featuredTwo.classList.add("feature");
+                featuredTwo.id = key;
+                infoDivTwo.appendChild(featuredTwo);
+
+                // Featured Icon
+                let icon = document.createElement("i");
+                icon.classList.add("material-icons");
+                icon.classList.add("small");
+                icon.id = key + "icon";
+                icon.textContent = "highlight";
+                featured.appendChild(icon);
+
+                let iconTwo = document.createElement("i");
+                iconTwo.classList.add("material-icons");
+                iconTwo.classList.add("small");
+                iconTwo.id = key + "icon";
+                iconTwo.textContent = "highlight";
+                featuredTwo.appendChild(iconTwo);
+
+                if(data.Featured === true){
+                    $(icon).css("color", "#FFCC33");
+                    $(iconTwo).css("color", "#FFCC33")
+                }
+            }
+
             if(data.Class === "CS1"){
                 $(".cs1Div").append(div);
-            }else if(data.Class === "CS2"){
-                $(".cs2Div").append(div);
-            }else if(data.Class === "CS3"){
-                $(".cs3Div").append(div);
-            }else if(data.Featured === true){
-                $(".homeDiv").append(div);
-            }else{
+            }
 
+            if(data.Class === "CS2"){
+                $(".cs2Div").append(div);
+            } 
+            
+            if(data.Class === "CS3"){
+                $(".cs3Div").append(div);
+            }
+            
+            if(data.Featured === true){
+                $(".featured").append(divTwo);
             }
         });
 
@@ -135,8 +240,35 @@
         // Add a creator input button event listener
         $("#addCreator").on("click", addCreator);
 
+        // Feature button event listenere
+        $(document.body).on('click', '.feature', feature);
+
         // Slidenav trigger
         $(".sidenav").sidenav();
+    }
+
+    function feature(){
+        let uid = $(this).attr('id');
+        
+        firebase.database().ref("Projects/" + uid).on("value", snapshot => {
+            let data = snapshot.val();
+            
+            if(data.Featured === true){
+                $("#" + uid + "icon").css("color", "#000000");
+                firebase.database().ref("Projects/" + uid).child("Featured").transaction(Featured => {
+                    Featured = false;
+                    return Featured;
+                });
+            }
+
+            if(data.Featured === false){
+                $("#" + uid + "icon").css("color" , "#FFCC33");
+                firebase.database().ref("Projects/" + uid).child("Featured").transaction(Featured => {
+                    Featured = true;
+                    return Featured;
+                })
+            }
+        });
     }
 
     function radio(){
@@ -167,15 +299,15 @@
         // Get Values
         let title = $("#title").val();
         let description = $("#description").val();
+        let creators = $("#creator").val();
+        creators = creators.split("/");
         let creatorArray = [];
         let embed = $("#url").val();
 
         // For loop to add all creators to creatorArray
-        for(var i = 0; i < creators + 1; i++){
-            creatorArray.push($("#creator" + i).val());
+        for(var i = 0; i < creators.length; i++){
+            creatorArray.push(creators[i]);
         }
-
-        console.log(creatorArray);
 
         let classType = $("input[name=class]:checked").val();
         let projectType = $("input[name=projectType]:checked").val();
@@ -196,28 +328,28 @@
         }
 
         // Send other data
-        // if(scratch === true){
-        //     firebase.database().ref("Projects/" + key).set({
-        //         Title:title,
-        //         Featured:false,
-        //         Description:description,
-        //         Creators:creatorArray,
-        //         Class:classType,
-        //         ProjectType:projectType,
-        //         FilePaths:filePaths,
-        //         ScratchEmbed:embed,
-        //     });
-        // }else{
-        //     firebase.database().ref("Projects/" + key).set({
-        //         Title:title,
-        //         Featured:false,
-        //         Description:description,
-        //         Creators:creatorArray,
-        //         Class:classType,
-        //         ProjectType:projectType,
-        //         FilePaths:filePaths,
-        //     });
-        // }
+        if(scratch === true){
+            firebase.database().ref("Projects/" + key).set({
+                Title:title,
+                Featured:false,
+                Description:description,
+                Creators:creatorArray,
+                Class:classType,
+                ProjectType:projectType,
+                FilePaths:filePaths,
+                ScratchEmbed:embed,
+            });
+        }else{
+            firebase.database().ref("Projects/" + key).set({
+                Title:title,
+                Featured:false,
+                Description:description,
+                Creators:creatorArray,
+                Class:classType,
+                ProjectType:projectType,
+                FilePaths:filePaths,
+            });
+        }
 
         setTimeout(() => {
             $(".homeDiv").css("display", "block");
