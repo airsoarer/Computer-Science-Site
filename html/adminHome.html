@@ -40,7 +40,7 @@
                 <div class="col s12 m2 offset-m2 center-align"><button class="col s12 m10 offset-m1 cs1" id="cs1">CS1</button></div>
                 <div class="col s12 m2 center-align"><button class="col s12 m10 offset-m1 cs2" id="cs2">CS2</button></div>
                 <div class="col s12 m2 center-align"><button class="col s12 m10 offset-m1 cs3" id="cs3">CS3</button></div>
-                <div class="col s12 m2 center-align"><button class="col s12 m10 offset-m1 truncate addPRoject" id="addProject">Add A Project</button></div>
+                <div class="col s12 m2 center-align"><button class="col s12 m10 offset-m1 truncate addProject" id="addProject">Add A Project</button></div>
             </div>
             <div class="row col s12 m12 arrow">
                 <button class="col s12 m12 center-align scroll"><i class="material-icons large">keyboard_arrow_down</i></button>
@@ -102,8 +102,13 @@
                     </div>
                     <div class="col s12 m6 creators">
                         <h5>Creators</h5>
-                        <input type="text" class="col s11 m11 creator0" placeholder="Student Name and Grade:">
+                        <input type="text" id="creator0" class="col s11 m11 creator0" placeholder="Student Name and Grade:">
                         <button class="col s1 m1" id="addCreator"><i class="material-icons">add</i></button>
+                    </div>
+                    <div class="col s12 m6 scratch">
+                        <h5>Scratch Project HTML Embed</h5>
+                        <input type="text" class="col m12" placeholder="URL:" id="url">
+                        <span>***Make sure that your html embed code has "https:" before the backslashes where it says "src"***</span>
                     </div>
                     <div class="col s12 m6 radio">
                         <div class="col s12 m6 class">
