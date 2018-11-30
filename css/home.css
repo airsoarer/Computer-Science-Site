@@ -8,8 +8,26 @@
     --accentColor: #464b4f;
 }
 
+html{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
 body{
-         
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+footer{
+    background-color: var(--accentColor) !important;
+    color: white;
+    height: 100px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+footer p{
+    font-size: 24px;
 }
 
 p{
@@ -184,6 +202,10 @@ input:focus{
     bottom: 0px;
 }
 
+.color a{
+    color: #63d488 !important;
+}
+
 .featured{
     margin-bottom: 20px !important;
 }
@@ -206,6 +228,12 @@ input:focus{
 
 .adminDiv{
     display: none;
+}
+
+#signature p{
+    margin-top: 50vh !important;
+    color: white !important;
+    font-size: 22px;
 }
 
 .aboutTeacher p{
@@ -241,6 +269,7 @@ input:focus{
 
 #loader{
     display: none;
+    offset: hidden;
 }
 
 .lds-hourglass {
