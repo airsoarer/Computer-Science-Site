@@ -43,6 +43,11 @@ input:focus{
     border-bottom-color: var(--baseColorTwo) !important;
 }
 
+.home{
+    height: 25px !important;
+    width: 50px;
+}
+
 @media screen and (max-width: 601px){
     .title h5{
         text-align: left;
@@ -127,21 +132,26 @@ input:focus{
     font-weight: 200 !important;
 }
 
-.buttons button{
+#btnTitle{
+    margin-bottom: 90px;
+}
+
+.button button{
     height: 50px;
     background-color: transparent;
     border: solid 2px var(--baseColor);
     color: white;
+    margin-bottom: 15px;
 }
 
-.buttons button:hover{
+.button button:hover{
     background-color: var(--baseColor);
     /* color: black; */
     transition-duration: .5s;
     border: solid 2px var(--baseColor);
 }
 
-.buttons button:focus{
+.button button:focus{
     background-color: var(--baseColor);
     color: white;
     border: solid 2px var(--baseColor);

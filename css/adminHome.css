@@ -13,6 +13,10 @@ iframe{
     height: 100% !important;
 }
 
+.info{
+    margin-top: 40px;
+}
+
 .feature{
     background-color: transparent;
     border: none;
