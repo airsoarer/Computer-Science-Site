@@ -230,6 +230,17 @@
         // Authentication button event listeners
         $("#login").on("click", login);
         $(".logout").on("click", logout);
+        $("#email").on("keyup", (e) => {
+            if(e.keyCode === 13){
+                login();                
+            }
+        });
+
+        $("#pass").on("keyup", (e) => {
+            if(e.keyCode === 13){
+                login();
+            }
+        });
 
         // Add a New Project button event listeners
         $("#project").on("click", addProject);
