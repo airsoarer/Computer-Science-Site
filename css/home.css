@@ -43,9 +43,26 @@ input:focus{
     border-bottom-color: var(--baseColorTwo) !important;
 }
 
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0px 5px 6px #F1F1F1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--baseColor);
+}
+
 .home{
     height: 25px !important;
     width: 50px;
+}
+
+.info {
+    margin-top: 50px;
 }
 
 @media screen and (max-width: 601px){
